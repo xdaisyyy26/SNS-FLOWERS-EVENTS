@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home</title>
+
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    /* HEADER */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color:#ffe6e6;
+            padding: 12px 50px;
+            border-radius: 5px;
+            box-shadow: 0px 10px 5px #b2b0b040;
+            flex-wrap: wrap;
+            position: relative;
+          }
+
+          .logo-container {
+            display: flex;
+            flex-direction: column;
+          }
+
+          #logo-title {
+            font-family: 'Georgia', serif;
+            font-size: 40px;
+            margin: 0;
+            padding-left: 35px;
+            color: black;
+            font-weight: bold;
+          }
+
+          #logo-subtitle {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 2px;
+            color: #3b3b3b;
+            font-weight: bold;
+          }
+
+          /* NAVIGATION */
+          header nav {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+          }
+
+          header nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+          }
+
+          header nav ul li a {
+            color: #726d6f;
+            text-decoration: none;
+            font-family: 'Segoe UI';
+            font-size: 18px;
+            transition: color 0.3s ease;
+          }
+
+          header nav ul li a:hover {
+            color: rgb(219, 91, 166);
+            box-shadow: 0 2px 0 0 currentColor;
+          }
+
+          /* Responsive Toggle Menu*/
+          #menu-toggle {
+            display: none;
+            
+          }
+
+          .menu-icon {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+          }
+
+          @media (max-width: 768px) {
+              header nav {
+              width: 100%;
+              order: 3;
+            }
+              header nav ul {
+                  display: none;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 10px 0;
+                  background-color: #ffe6e6;
+            }
+              #menu-toggle:checked + .menu-icon + nav ul {display: flex;}
+              .menu-icon {
+                  display: block;
+                  position: absolute;
+                  top: 15px;
+                  right: 30px;
+              }
+              #logo-title {font-size: 30px;}
+              #logo-subtitle {font-size: 16px;}
+          }
+        /* END HEADER */
+
+
+        body, html {
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            background: #fff;
+        }
+
+        .animated-banner {
+            position: relative;
+            width: 100%;
+            height: 650px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            padding-top: 8px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 500px;
+            z-index: 2;
+            text-align: left;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .banner-text.fade-out {
+            opacity: 0;
+        }
+
+        .banner-text h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #ffb1b1;
+        }
+
+        .banner-text p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: lighter;
+        }
+
+        .banner-button {
+            background: transparent;
+            border: 2px solid #FFB1B1;
+            padding: 12px 30px;
+            font-size: 1rem;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .banner-button:hover {
+            background: #FF748B;
+            border-color: #FF748B;
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+    
+    /* RECOMMENDATIONS */
+
+        .recommend-section {
+            padding: 40px 20px;
+            background: #FFEAE3;
+            text-align: center;
+        }
+
+        .recommend-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .recommend-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            width: 200px;
+            background: lightpink;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .product-card p {
+            font-weight: bold;
+            margin: 10px 0 5px;
+        }
+
+        .product-card span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .add-to-cart {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff7488;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .add-to-cart {
+            opacity: 1;
+        }
+    /* END RECOMMENDATIONS */
+
+    /* BANNER 2 */
+        .full-animated-banner {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .left-side, .right-side {
+            width: 50%;
+        }
+
+        .left-side {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .right-side {
+            background: #FFD0D0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px;
+        }
+
+        .right-side p {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .right-side .banner-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: none;
+            border: 2px solid #000;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .right-side .banner-button:hover {
+            background: #000;
+            color: #fff;
+        }
+        /* END BANNER 2 */
+        
+        /* FOOTER */
+        footer {
+            background: #ffe6e6;
+            padding: 40px 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 30px;
+        }
+
+        .f-logo {
+            flex: 1;
+            text-align: center;
+        }
+
+        .f-logo h3 {
+            font-size: 40px;
+            margin-bottom: 5px;
+            font-family: Georgia, serif;
+        }
+
+        .f-logo p {
+            font-style: italic;
+            color: #3b3b3b;
+            font-family: Georgia, serif;
+        }
+
+        .footer-section h3 {
+            color: #e91e95;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: rgb(243, 71, 157);
+        }
+
+        .social-icons a {
+            font-size: 1.4rem;
+            color: rgb(179, 41, 110);
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #726d6f;
+        }
+    /* END FOOTER */
+
+    /* RESPONSIVENESS */
+        @media (max-width: 992px) {
+        .right-side {
+            padding: 40px;
+        }
+
+        .right-side p,
+        .banner-text h1 {
+            font-size: 2.5rem;
+        }
+
+        .banner-text p {
+            font-size: 1.2rem;
+        }
+        }
+
+        @media (max-width: 768px) {
+        .full-animated-banner {
+            flex-direction: column;
+            height: auto;
+        }
+
+        .left-side, .right-side {
+            width: 100%;
+            height: auto;
+        }
+
+        .right-side {
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .right-side p {
+            font-size: 2rem;
+        }
+
+        .banner-text {
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            max-width: 90%;
+        }
+
+        .banner-text h1 {
+            font-size: 2rem;
+        }
+
+        .banner-text p {
+            font-size: 1rem;
+        }
+
+        .recommend-grid {
+            gap: 15px;
+        }
+
+        .product-card {
+            width: 45%;
+        }
+        }
+
+        @media (max-width: 576px) {
+        .animated-banner {
+            height: 400px;
+        }
+
+        .banner-text h1 {
+            font-size: 1.8rem;
+        }
+
+        .banner-text p {
+            font-size: 0.95rem;
+        }
+
+        .banner-button {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .recommend-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card {
+            width: 90%;
+        }
+
+        .right-side p {
+            font-size: 1.5rem;
+        }
+
+        footer {
+            padding: 30px 10px;
+        }
+
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        }
+
+  </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo-container">
+          <h2 id="logo-title">SnS</h2>
+          <h3 id="logo-subtitle">Flowers & Events</h3>
+        </div>
+    
+        <input type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="menu-icon"><i class="bi bi-list"></i></label>
+    
+        <nav class="p-header">
+          <ul>
+            <li><a href="./">Home</a></li>
+            <li><a href="./products">Products</a></li>
+            <li><a href="./events">Events</a></li>
+            <li><a href="./gallery">Gallery</a></li>
+            <li><a href="./about">About</a></li>
+          </ul>
+        </nav>
+      </header>
+
+    <!-- SLIDESHOW 1 -->
+        <div class="animated-banner">
+            <img class="slide active" src="https://github.com/xdaisyyy26/web-images/raw/main/6.png" alt="home">
+            <img class="slide" src="https://github.com/xdaisyyy26/web-images/raw/main/7.png" alt="home">
+            <img class="slide" src="https://github.com/xdaisyyy26/web-images/raw/main/2.png" alt="home">
+            <img class="slide" src="https://github.com/xdaisyyy26/web-images/raw/main/8.png" alt="home">
+
+            <div class="banner-text" id="banner-text">
+            <h1>Heartfelt Celebrations</h1>
+            <p>BIG OR SMALL, ALWAYS MEMORABLE</p>
+            <button class="banner-button">EVENTS WITH SNS</button>
+            </div>
+        </div>
+
+    <!-- RECOMMENDATIONS -->
+        <div class="recommend-section">
+            <h2>RECOMMENDATIONS FOR YOU</h2>
+            <div class="recommend-grid">
+            <div class="product-card"><img src="https://github.com/xdaisyyy26/web-images/raw/main/BS1.png"><p>₱ 1,500</p><span>RSC Bouquet</span><button class="add-to-cart">Add to Cart</button></div>
+            <div class="product-card"><img src="https://github.com/xdaisyyy26/web-images/raw/main/BS2.png"><p>₱ 1,599</p><span>Dried Flowers Bouquet</span><button class="add-to-cart">Add to Cart</button></div>
+            <div class="product-card"><img src="https://github.com/xdaisyyy26/web-images/raw/main/BS3.png"><p>₱ 1,500</p><span>Pink Rose Bouquet</span><button class="add-to-cart">Add to Cart</button></div>
+            <div class="product-card"><img src="https://github.com/xdaisyyy26/web-images/raw/main/BS4.png"><p>₱ 1,500</p><span>Sunflower Bouquet</span><button class="add-to-cart">Add to Cart</button></div>
+            </div>
+        </div>
+
+    <!-- SLIDESHOW 2 -->
+        <div class="full-animated-banner">
+            <div class="left-side">
+            <img class="slide active" src="https://github.com/xdaisyyy26/web-images/raw/main/BIRTHDAY.jpg" alt="event-image">
+            <img class="slide" src="https://github.com/xdaisyyy26/web-images/raw/main/WEDDING-VENUW.jpg" alt="event-image">
+            <img class="slide" src="https://github.com/xdaisyyy26/web-images/raw/main/GARDEN-WEDDING.jpg" alt="event-image">
+            </div>
+            <div class="right-side">
+            <p>Heartfelt Celebrations,<br>both Big and Small,<br>made personal and memorable with SnS</p>
+            <button class="banner-button" onclick="window.location.href='gallery.html'">VIEW</button>
+            </div>
+        </div>
+
+    <!-- FOOTER -->
+        <footer>
+            <div class="footer-container">
+            <div class="f-logo">
+                <h3>SnS</h3>
+                <p>Flowers & Events</p>
+            </div>
+            <div class="footer-section">
+                <h3>MESSAGE US</h3>
+                <ul>
+                <li><a href="mailto:sharlajaynemanabat@gmail.com"><i class="fas fa-envelope"></i> sharlajaynemanabat@gmail.com</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100083152006579"><i class="fab fa-facebook"></i> SnS Flowers & Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>VISIT US</h3>
+                <p><a href="https://www.google.com/maps/search/?api=1&query=Stall+A,+Commercial+Bldg.,+Sta.+Cruz,+Magalang,+Pampanga" target="_blank"><i class="fas fa-map-marker-alt"></i> Stall A, Commercial Bldg., Sta. Cruz, Magalang, Pampanga</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>CALL US</h3>
+                <p><a href="tel:09750977392">0975-097-7392</a> / <a href="tel:09171187184">0917-118-7184</a></p>
+            </div>
+            </div>
+            <div class="footer-bottom"><p>© 2025 SnS Flowers & Events. All Rights Reserved</p></div>
+        </footer>
+
+    <!-- SLIDESHOW SCRIPT -->
+    <script>
+        const slides1 = document.querySelectorAll('.animated-banner .slide');
+        const slides2 = document.querySelectorAll('.left-side .slide');
+        const bannerText = document.getElementById('banner-text');
+        const bannerButton = bannerText.querySelector('.banner-button');
+        const texts = [
+        { title: "Bloom Together", subtitle: "WHERE EVERY PETAL TELLS YOUR STORY, AND EVERY EVENT BLOSSOMS INTO MEMORIES", button: "SnS Flowers and Events", link: "index.html" },
+        { title: "Petal and Bloom", subtitle: "WHERE EVERY FLOWER TELLS A STORY", button: "EVENTS WITH SNS", link: "events.html" },
+        { title: "Bloom and Beyond", subtitle: "WHERE MEMORIES LAST FOREVER", button: "Shop Fresh Flowers", link: "products.html" },
+        { title: "Heartfelt Celebrations", subtitle: "BIG OR SMALL, ALWAYS MEMORABLE", button: "Customize Yours", link: "products.html" }
+        ];
+        let currentSlide = 0, currentSlide2 = 0;
+
+        setInterval(() => {
+        bannerText.classList.add('fade-out');
+        setTimeout(() => {
+            slides1[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides1.length;
+            slides1[currentSlide].classList.add('active');
+            const t = texts[currentSlide];
+            bannerText.querySelector('h1').innerText = t.title;
+            bannerText.querySelector('p').innerText = t.subtitle;
+            bannerButton.innerText = t.button;
+            bannerButton.onclick = () => window.location.href = t.link;
+            bannerText.classList.remove('fade-out');
+        }, 500);
+        }, 4000);
+
+        setInterval(() => {
+        slides2[currentSlide2].classList.remove('active');
+        currentSlide2 = (currentSlide2 + 1) % slides2.length;
+        slides2[currentSlide2].classList.add('active');
+        }, 3000);
+    </script>
+
+</body>
+</html>
